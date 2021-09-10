@@ -1,0 +1,66 @@
+type Workspace
+@model
+@auth(
+  rules: [
+    # Owners of a workspace can perform any operations
+    { allow: owner, identityClaim: "email", ownerField: "owner" }
+    { allow: owner, identityClaim: "email", ownerField: "editors", operations: [read] }
+  ]
+) {
+  id: ID!
+  name: String!
+  description: String
+  boards: [Board!] @connection(keyName: "byWorkspace", fields: ["id"])
+  owner: String
+  editors: [String!]
+}
+
+type Board
+@model
+@key(name: "byWorkspace", fields: ["workspaceId", "name"])
+@auth(
+    rules: [
+      # Owners of a board can perform any operations
+      { allow: owner, ownerField: "owner", identityClaim: "email" }
+      { allow: owner, ownerField: "editors", identityClaim: "email", operations: [create, read, update, delete] }
+    ]
+  ) {
+  id: ID!
+  workspaceId: ID!
+  name: String!
+  description: String
+  columns: [Column!]! 
+  owner: String
+  editors: [String!]
+  visibility: Visibility
+  isTemplate: Boolean
+  image: String!
+}
+
+type Column 
+{
+  id: ID!
+  boardId: ID!
+  name: String!
+  tickets: [Ticket!]
+  columnIndex: Int!
+}
+
+type Ticket {
+  id: ID!
+  columnId: ID!
+  title: String!
+  description: String
+  labels: [Label!]
+}
+
+type Label {
+  name: String!
+  color: String!
+}
+
+enum Visibility {
+  Public
+  Private
+  Workspace
+}

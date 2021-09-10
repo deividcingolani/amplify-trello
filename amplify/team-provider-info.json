@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-trelloclone-dev-220914-authRole",
+      "UnauthRoleArn": "arn:aws:iam::009295028442:role/amplify-trelloclone-dev-220914-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::009295028442:role/amplify-trelloclone-dev-220914-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-trelloclone-dev-220914-deployment",
+      "UnauthRoleName": "amplify-trelloclone-dev-220914-unauthRole",
+      "StackName": "amplify-trelloclone-dev-220914",
+      "StackId": "arn:aws:cloudformation:us-east-1:009295028442:stack/amplify-trelloclone-dev-220914/ba391ec0-11d3-11ec-a94c-0e3a8a26865b",
+      "AmplifyAppId": "d2dn2eqvmzbjrh"
+    },
+    "categories": {
+      "auth": {
+        "trelloclone4746a536": {}
+      }
+    }
+  }
+}
